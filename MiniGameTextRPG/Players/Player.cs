@@ -34,6 +34,7 @@ namespace MiniGameTextRPG.Players
         public int EXP { get { return exp; } set { exp = value; } }
 
         public event Action OnGainGold;
+        public event Action OnGainExp;
         public abstract void Skill(Monster monster);
 
 
@@ -44,8 +45,8 @@ namespace MiniGameTextRPG.Players
         }
         public void GainExp(int amount)
         {
-            gold += amount;
-            OnGainGold?.Invoke();
+            exp += amount;
+            OnGainExp?.Invoke();
         }
 
         public void ShowInfo()

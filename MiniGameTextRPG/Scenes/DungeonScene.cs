@@ -68,22 +68,23 @@ namespace MiniGameTextRPG.Scenes
 
             game.Player.ShowInfo();
         }
-        string battleInput = Console.ReadLine();
+
+        
 
         public override void Update()
         {
             // TODO : 전투 진행
             Console.Clear();
-            switch (battleInput)
+            switch (input)
             {
                 case "1":
                     Console.Clear();
                     PrintMonster();
                     Console.WriteLine();
                     Console.WriteLine("플레이어가 공격합니다");
-                    if (player.attack > monster.defense)
+                    if (game.Player.attack > monster.defense)
                     {
-                        if (monster.curHP - player.attack <= 0)
+                        if (monster.curHP - game.Player.attack <= 0)
                         {
                             Console.Clear();
                             Console.WriteLine("효과는 굉장했습니다!");
@@ -92,24 +93,29 @@ namespace MiniGameTextRPG.Scenes
                             Thread.Sleep(1000);
                             Console.WriteLine("보상으로 100골드와 10경험치를 획득합니다.");
                             Thread.Sleep(1000);
-                            player.GainGold(100);
+                            game.Player.GainGold(100);
                             Thread.Sleep(1000);
-                            player.GainExp(10);
+                            game.Player.GainExp(10);
                             Thread.Sleep(1000);
                             game.ChangeScene(SceneType.Town);
                             break;
                         }
-                        else if (monster.curHP - player.attack > 0)
+                        else if (monster.curHP - game.Player.attack > 0)
                         {
-                            monster.curHP -= player.attack;
+                            monster.curHP -= game.Player.attack;
                             Console.WriteLine("몬스터가 반격합니다");
+                            game.Player.curHP -= monster.attack;
                             Thread.Sleep(1000);
-                            if (player.curHP - monster.attack < 0)
+                            if (game.Player.curHP - monster.attack <= 0)
                             {
                                 Console.WriteLine("플레이어가 쓰러졌습니다...");
                                 Thread.Sleep(1000);
                             }
-                        }
+                            else
+                            {
+                                break;
+                            }
+                        }return;
                     }
                     else
                     {
@@ -118,6 +124,34 @@ namespace MiniGameTextRPG.Scenes
                     }
                     break;
                 case "2":
+                    if (game.Player.defense < monster.attack)
+                    {
+                        if (game.Player.curHP - monster.attack <= 0)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("플레이어가 방어합니다.");
+                            Thread.Sleep(2000);
+                            Console.WriteLine("...");
+                            Thread.Sleep(1000);
+                            Console.WriteLine("방어는 무의미했습니다!");
+                            Thread.Sleep(1000);
+                            Console.WriteLine("플레이어가 쓰러졌습니다.");
+                            Thread.Sleep(2000);
+                            game.Over();
+                            break;
+                        }
+                        else if (game.Player.curHP - monster.attack > 0)
+                        {
+                            monster.curHP -= game.Player.attack;
+                            Thread.Sleep(1000);
+                        }return;
+                            
+                    }
+                    else
+                    {
+                        Console.WriteLine("효과가 없습니다..");
+                        Thread.Sleep(1000);
+                    }
                     break;
                 case "4":
                     Console.WriteLine("도망갑니다....");
