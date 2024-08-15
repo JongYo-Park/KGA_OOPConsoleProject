@@ -23,7 +23,7 @@ namespace MiniGameTextRPG.Players
 
         public override void Skill(Monster monster)
         {
-            // TODO : 스킬 구현
+            // TODO : 스킬 구현 (땅에 있는 몬스터에게 큰 효과)
         }
     }
 }

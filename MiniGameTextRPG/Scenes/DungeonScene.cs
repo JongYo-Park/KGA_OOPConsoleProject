@@ -32,10 +32,10 @@ namespace MiniGameTextRPG.Scenes
             // TODO : 랜덤 몬스터 출연
 
             monster = new Monster();
-            monster.name = "더미 몬스터";
+            monster.name = "몬스터";
             monster.maxHP = 100;
             monster.curHP = monster.maxHP;
-            monster.attack = 10;
+            monster.attack = 20;
             monster.defense = 10;
 
             Console.Clear();
@@ -62,7 +62,7 @@ namespace MiniGameTextRPG.Scenes
             Console.WriteLine();
             Console.WriteLine("1. 공격");
             Console.WriteLine("2. 방어");
-            //Console.WriteLine("3. 스킬");
+            Console.WriteLine("3. 스킬");
             Console.WriteLine("4. 도망");
             Console.WriteLine("행동을 선택해주세요 : ");
 
@@ -145,12 +145,79 @@ namespace MiniGameTextRPG.Scenes
                             monster.curHP -= game.Player.attack;
                             Thread.Sleep(1000);
                         }return;
-                            
                     }
                     else
                     {
                         Console.WriteLine("효과가 없습니다..");
                         Thread.Sleep(1000);
+                    }
+                    break;
+                case "3":
+                    Console.Clear();
+                    PrintMonster();
+                    Console.Clear();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("플레이어가 스킬을 사용합니다");
+                    Thread.Sleep(1000);
+                    if (game.Player.Job == Job.Warrior)
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("파워 스트라이크!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("스킬 효과가 치명적입니다!");
+                        Thread.Sleep(1000);
+                        monster.curHP -= game.Player.attack * 2;
+                    }
+                    else if (game.Player.Job == Job.Mage)
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("파이어 볼!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("스킬 효과가 치명적입니다!");
+                        Thread.Sleep(1000);
+                        monster.curHP -= game.Player.attack * 2;
+                    }
+                    else if (game.Player.Job == Job.Rogue)
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("더블어택!");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("스킬 효과가 치명적입니다!");
+                        Thread.Sleep(1000);
+                        monster.curHP -= game.Player.attack * 2;
+                    }
+                    if (monster.curHP > 0)
+                    {
+                        Console.WriteLine();
+                        Thread.Sleep(1000);
+                        Console.WriteLine("몬스터가 반격합니다");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("몬스터가 반격합니다");
+                        game.Player.curHP -= monster.attack;
+                        Thread.Sleep(1000);
+                        if (game.Player.curHP - monster.attack <= 0)
+                        {
+                            Console.WriteLine("플레이어가 쓰러졌습니다...");
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (monster.curHP <= 0)
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("더미 몬스터가 쓰러졌습니다.");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("보상으로 100골드와 10경험치를 획득합니다.");
+                        Thread.Sleep(1000);
+                        game.Player.GainGold(100);
+                        Thread.Sleep(1000);
+                        game.Player.GainExp(10);
+                        Thread.Sleep(1000);
+                        game.ChangeScene(SceneType.Town);
+                        break;
                     }
                     break;
                 case "4":

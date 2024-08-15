@@ -13,5 +13,7 @@ namespace MiniGameTextRPG.Monsters
         public int maxHP;
         public int attack;
         public int defense;
+
+        
     }
 }

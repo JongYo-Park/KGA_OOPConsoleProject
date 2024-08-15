@@ -23,7 +23,8 @@ namespace MiniGameTextRPG.Players
 
         public override void Skill(Monster monster)
         {
-            // TODO : 스킬 구현
+            // TODO : 스킬 구현 (단단한 타입 몬스터에게 큰 효과)
+            //monster.curHP -= this.attack * 2;
         }
     }
 }
