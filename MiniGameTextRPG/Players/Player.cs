@@ -35,9 +35,6 @@ namespace MiniGameTextRPG.Players
 
         public event Action OnGainGold;
         public event Action OnGainExp;
-        public abstract void Skill(Monster monster);
-
-
         public void GainGold(int amount)
         {
             gold += amount;
@@ -48,6 +45,24 @@ namespace MiniGameTextRPG.Players
             exp += amount;
             OnGainExp?.Invoke();
         }
+        public abstract void Skill(Monster monster);
+
+        public List<Item> Inventory { get; private set; } = new List<Item>();
+        
+        public void AddItem(Item item)
+        {
+            //if (Inventory.Count < 5)
+            //{
+                Inventory.Add(item);
+                Console.WriteLine($"{item}을(를) 인벤토리에 추가했습니다.");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("더 이상 아이템을 추가할 수 없습니다.");
+            //}
+        }
+
+        
 
         public void ShowInfo()
         {

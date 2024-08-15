@@ -166,7 +166,9 @@ namespace MiniGameTextRPG.Scenes
                         Thread.Sleep(2000);
                         Console.WriteLine("스킬 효과가 치명적입니다!");
                         Thread.Sleep(1000);
-                        monster.curHP -= game.Player.attack * 2;
+                        Console.WriteLine($"몬스터가 {game.Player.attack * 3}데미지를 받았습니다");
+                        Thread.Sleep(1000);
+                        monster.curHP -= game.Player.attack * 3;
                     }
                     else if (game.Player.Job == Job.Mage)
                     {
@@ -174,6 +176,8 @@ namespace MiniGameTextRPG.Scenes
                         Console.WriteLine("파이어 볼!");
                         Thread.Sleep(2000);
                         Console.WriteLine("스킬 효과가 치명적입니다!");
+                        Thread.Sleep(1000);
+                        Console.WriteLine($"몬스터가 {game.Player.attack * 2}데미지를 받았습니다");
                         Thread.Sleep(1000);
                         monster.curHP -= game.Player.attack * 2;
                     }
@@ -184,15 +188,17 @@ namespace MiniGameTextRPG.Scenes
                         Thread.Sleep(2000);
                         Console.WriteLine("스킬 효과가 치명적입니다!");
                         Thread.Sleep(1000);
+                        Console.WriteLine($"몬스터가 {game.Player.attack * 2}데미지를 받았습니다");
+                        Thread.Sleep(1000);
                         monster.curHP -= game.Player.attack * 2;
                     }
                     if (monster.curHP > 0)
                     {
                         Console.WriteLine();
+                        Thread.Sleep(2000);
+                        Console.WriteLine("화가 난 몬스터가 반격합니다");
                         Thread.Sleep(1000);
-                        Console.WriteLine("몬스터가 반격합니다");
-                        Thread.Sleep(1000);
-                        Console.WriteLine("몬스터가 반격합니다");
+                        Console.WriteLine($"플레이어가 {monster.attack}데미지를 받았습니다");
                         game.Player.curHP -= monster.attack;
                         Thread.Sleep(1000);
                         if (game.Player.curHP - monster.attack <= 0)
