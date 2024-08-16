@@ -49,8 +49,6 @@ namespace MiniGameTextRPG.Scenes
                 Console.WriteLine();
                 Thread.Sleep(1000);
                 Console.WriteLine("마을로 돌아가려면 아무키나 누르세요");
-                Console.ReadKey();
-                game.ChangeScene(SceneType.Town);
             }
         }
 
@@ -79,11 +77,6 @@ namespace MiniGameTextRPG.Scenes
             }
             else
             {
-                Console.WriteLine("소지하고 있는 아이템이 없습니다.");
-                Console.WriteLine();
-                Thread.Sleep(1000);
-                Console.WriteLine("마을로 돌아가려면 아무키나 누르세요");
-                Console.ReadKey();
                 game.ChangeScene(SceneType.Town);
             }
            

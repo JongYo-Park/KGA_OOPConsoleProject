@@ -51,6 +51,7 @@ namespace MiniGameTextRPG.Scenes
                     break;
                 case "N":
                 case "n":
+                    Console.Clear();
                     game.Over();
                     break;
                 default:
