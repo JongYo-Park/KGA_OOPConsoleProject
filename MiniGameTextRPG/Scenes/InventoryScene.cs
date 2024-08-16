@@ -11,8 +11,6 @@ namespace MiniGameTextRPG.Scenes
 
         public override void Enter()
         {
-            // TODO : 인벤토리 설정
-
             Console.Clear();
             Console.WriteLine("인벤토리를 엽니다...");
 
@@ -41,14 +39,14 @@ namespace MiniGameTextRPG.Scenes
                 {
                     Console.WriteLine($"{i + 1}. {game.Player.Inventory[i]}");
                 }
-                Console.WriteLine("사용할 아이템 번호를 입력하세요(0을 누르면 마을로 돌아갑니다) : ");
+                Console.WriteLine("사용할 아이템 번호를 입력하세요.(0을 누르면 마을로 돌아갑니다) : ");
             }
             else
             {
                 Console.WriteLine("소지하고 있는 아이템이 없습니다.");
                 Console.WriteLine();
                 Thread.Sleep(1000);
-                Console.WriteLine("마을로 돌아가려면 아무키나 누르세요");
+                Console.WriteLine("마을로 돌아가려면 아무키나 누르세요.");
             }
         }
 
@@ -79,7 +77,6 @@ namespace MiniGameTextRPG.Scenes
             {
                 game.ChangeScene(SceneType.Town);
             }
-           
         }
     }
 }
