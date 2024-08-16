@@ -1,10 +1,5 @@
 ﻿using MiniGameTextRPG.Players;
 using MiniGameTextRPG.Scenes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniGameTextRPG
 {
@@ -21,12 +16,14 @@ namespace MiniGameTextRPG
 
         public void Run()
         {
-            Start();    
-            while (isRunning)   
+            Start();
+            while (isRunning)
             {
-                Render();   
+                Render();
+                Input();
+                Update();
             }
-            End(); 
+            End();
         }
 
         public void ChangeScene(SceneType sceneType)
@@ -53,6 +50,7 @@ namespace MiniGameTextRPG
             scenes[(int)SceneType.Dungeon] = new DungeonScene(this);
             scenes[(int)SceneType.Inventory] = new InventoryScene(this);
             scenes[(int)SceneType.Shop] = new ShopScene(this);
+            scenes[(int)SceneType.Ending] = new EndingScene(this);
 
             curScene = scenes[(int)SceneType.Title];
             curScene.Enter();

@@ -118,7 +118,8 @@ namespace MiniGameTextRPG.Scenes
                             {
                                 Console.WriteLine("플레이어가 쓰러졌습니다...");
                                 Thread.Sleep(1000);
-                                game.Over();
+                                Thread.Sleep(2000);
+                                game.ChangeScene(SceneType.Ending);
                             }
                             else
                             {
@@ -147,8 +148,8 @@ namespace MiniGameTextRPG.Scenes
                             Thread.Sleep(1000);
                             Console.WriteLine("플레이어가 쓰러졌습니다.");
                             Thread.Sleep(2000);
-                            game.Over();
-                            break;
+                            Thread.Sleep(2000);
+                            game.ChangeScene(SceneType.Ending);
                         }
                         else if (game.Player.curHP - monster.attack > 0)
                         {
@@ -215,8 +216,8 @@ namespace MiniGameTextRPG.Scenes
                         if (game.Player.curHP - monster.attack <= 0)
                         {
                             Console.WriteLine("플레이어가 쓰러졌습니다...");
-                            Thread.Sleep(1000);
-                            game.Over();
+                            Thread.Sleep(2000);
+                            game.ChangeScene(SceneType.Ending);
                         }
                         else
                         {
@@ -249,7 +250,6 @@ namespace MiniGameTextRPG.Scenes
                     //Thread.Sleep(2000);
                     return;
             }
-
         }
 
         private void PrintMonster()
