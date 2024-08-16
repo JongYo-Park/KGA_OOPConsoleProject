@@ -84,6 +84,9 @@ namespace MiniGameTextRPG.Scenes
                     Console.WriteLine("플레이어가 공격합니다");
                     if (game.Player.attack > monster.defense)
                     {
+                        //몬스터 TakeDamage로 간단화 작업할 것
+                        Console.WriteLine($"몬스터가 {game.Player.attack}데미지를 받았습니다.");
+                        Thread.Sleep(1000);
                         if (monster.curHP - game.Player.attack <= 0)
                         {
                             Console.Clear();
@@ -102,14 +105,20 @@ namespace MiniGameTextRPG.Scenes
                         }
                         else if (monster.curHP - game.Player.attack > 0)
                         {
+                            //몬스터 CounterAttack으로 간단화 작업할 것
                             monster.curHP -= game.Player.attack;
-                            Console.WriteLine("몬스터가 반격합니다");
+                            Console.WriteLine();
+                            Thread.Sleep(2000);
+                            Console.WriteLine("화가 난 몬스터가 반격합니다");
+                            Thread.Sleep(1000);
+                            Console.WriteLine($"플레이어가 {monster.attack}데미지를 받았습니다");
                             game.Player.curHP -= monster.attack;
                             Thread.Sleep(1000);
-                            if (game.Player.curHP - monster.attack <= 0)
+                            if (game.Player.curHP <= 0)
                             {
                                 Console.WriteLine("플레이어가 쓰러졌습니다...");
                                 Thread.Sleep(1000);
+                                game.Over();
                             }
                             else
                             {
@@ -125,9 +134,10 @@ namespace MiniGameTextRPG.Scenes
                     break;
                 case "2":
                     if (game.Player.defense < monster.attack)
-                    {
+                    {   //플레이어 AttackDefense로 간단화 할것
                         if (game.Player.curHP - monster.attack <= 0)
                         {
+                            
                             Console.Clear();
                             Console.WriteLine("플레이어가 방어합니다.");
                             Thread.Sleep(2000);
@@ -148,7 +158,7 @@ namespace MiniGameTextRPG.Scenes
                     }
                     else
                     {
-                        Console.WriteLine("효과가 없습니다..");
+                        Console.WriteLine("방어에 성공했습니다!");
                         Thread.Sleep(1000);
                     }
                     break;
@@ -159,6 +169,7 @@ namespace MiniGameTextRPG.Scenes
                     Thread.Sleep(1000);
                     Console.WriteLine("플레이어가 스킬을 사용합니다");
                     Thread.Sleep(1000);
+                    //각 직업별 스킬 구현
                     if (game.Player.Job == Job.Warrior)
                     {
                         Thread.Sleep(1000);
@@ -205,6 +216,7 @@ namespace MiniGameTextRPG.Scenes
                         {
                             Console.WriteLine("플레이어가 쓰러졌습니다...");
                             Thread.Sleep(1000);
+                            game.Over();
                         }
                         else
                         {
@@ -214,7 +226,7 @@ namespace MiniGameTextRPG.Scenes
                     if (monster.curHP <= 0)
                     {
                         Thread.Sleep(1000);
-                        Console.WriteLine("더미 몬스터가 쓰러졌습니다.");
+                        Console.WriteLine("몬스터가 쓰러졌습니다.");
                         Thread.Sleep(1000);
                         Console.WriteLine("보상으로 100골드와 10경험치를 획득합니다.");
                         Thread.Sleep(1000);

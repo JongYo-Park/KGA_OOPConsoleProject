@@ -13,7 +13,7 @@ namespace MiniGameTextRPG.Players
         {
             this.name = name;
             this.job = Job.Mage;
-            this.maxHP = 50;
+            this.maxHP = 10;
             this.curHP = maxHP;
             this.attack = 50;
             this.defense = 10;

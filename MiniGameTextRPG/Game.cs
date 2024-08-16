@@ -21,14 +21,12 @@ namespace MiniGameTextRPG
 
         public void Run()
         {
-            Start();    //준비작업
-            while (isRunning)   // 계속해서 플레이
+            Start();    
+            while (isRunning)   
             {
-                Render();   //표현 : 게임데이터들을 이요해서 콘솔 출력
-                Input();    //입력 : 키보드를 통한 입력 받기
-                Update();   //처리 : 받은 입력을 토대로 게임데이터들을 가공
+                Render();   
             }
-            End(); // 마무리작업
+            End(); 
         }
 
         public void ChangeScene(SceneType sceneType)
@@ -56,14 +54,13 @@ namespace MiniGameTextRPG
             scenes[(int)SceneType.Inventory] = new InventoryScene(this);
             scenes[(int)SceneType.Shop] = new ShopScene(this);
 
-
             curScene = scenes[(int)SceneType.Title];
             curScene.Enter();
         }
 
         private void End()
         {
-            curScene.Exit();
+            ChangeScene(SceneType.Ending);
         }
 
         private void Render()
