@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MiniGameTextRPG.Scenes.SelectScene;
 
 namespace MiniGameTextRPG.Scenes
 {
     public class EndingScene : Scene
     {
+        private string input;
         public EndingScene(Game game) : base(game)
         {
         }
@@ -24,7 +26,7 @@ namespace MiniGameTextRPG.Scenes
 
         public override void Input()
         {
-            Console.ReadKey();
+            input = Console.ReadLine();
         }
 
         public override void Render()
@@ -36,12 +38,24 @@ namespace MiniGameTextRPG.Scenes
             Console.WriteLine("=                                  =");
             Console.WriteLine("====================================");
             Console.WriteLine();
-            Console.WriteLine("    계속하려면 아무키나 누르세요    ");
+            Console.WriteLine("     다시 시작하시겠습니까?(y/n)     ");
         }
 
         public override void Update()
         {
-            game.ChangeScene(SceneType.Title);
+            switch (input)
+            {
+                case "Y":
+                case "y":
+                    game.ChangeScene(SceneType.Title);
+                    break;
+                case "N":
+                case "n":
+                    game.Over();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
