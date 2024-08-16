@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MiniGameTextRPG.Items;
 
 namespace MiniGameTextRPG.Players
 {
@@ -18,7 +19,7 @@ namespace MiniGameTextRPG.Players
         public int curHP;
         public int CurHP { get { return curHP; } }
 
-        protected int maxHP;
+        public int maxHP;
         public int MaxHP { get { return maxHP; } }
 
         public int attack;
@@ -51,15 +52,10 @@ namespace MiniGameTextRPG.Players
         
         public void AddItem(Item item)
         {
-            //if (Inventory.Count < 5)
-            //{
+            if (Inventory.Count < 5)
+            {
                 Inventory.Add(item);
-                Console.WriteLine($"{item}을(를) 인벤토리에 추가했습니다.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("더 이상 아이템을 추가할 수 없습니다.");
-            //}
+            }
         }
 
         

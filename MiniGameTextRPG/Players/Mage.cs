@@ -17,7 +17,7 @@ namespace MiniGameTextRPG.Players
             this.curHP = maxHP;
             this.attack = 50;
             this.defense = 10;
-            this.gold = 100;
+            this.gold = 500;
             this.exp = 0;
         }
 

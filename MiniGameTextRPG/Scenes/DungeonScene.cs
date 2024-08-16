@@ -89,7 +89,7 @@ namespace MiniGameTextRPG.Scenes
                             Console.Clear();
                             Console.WriteLine("효과는 굉장했습니다!");
                             Thread.Sleep(1000);
-                            Console.WriteLine("더미 몬스터가 쓰러졌습니다.");
+                            Console.WriteLine("몬스터가 쓰러졌습니다.");
                             Thread.Sleep(1000);
                             Console.WriteLine("보상으로 100골드와 10경험치를 획득합니다.");
                             Thread.Sleep(1000);

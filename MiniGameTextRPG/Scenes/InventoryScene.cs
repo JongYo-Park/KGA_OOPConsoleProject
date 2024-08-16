@@ -1,4 +1,6 @@
-﻿namespace MiniGameTextRPG.Scenes
+﻿using MiniGameTextRPG.Items;
+
+namespace MiniGameTextRPG.Scenes
 {
     public class InventoryScene : Scene
     {
@@ -24,7 +26,6 @@
 
         public override void Input()
         {
-            Console.ReadKey();
             input = Console.ReadLine();
         }
 
@@ -33,13 +34,14 @@
             Console.Clear();
             game.Player.ShowInfo();
             Console.WriteLine("<인벤토리>");
+
             if (game.Player.Inventory.Count > 0)
             {
                 for (int i = 0; i < game.Player.Inventory.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}. {game.Player.Inventory[i]}");
                 }
-                Console.WriteLine("사용할 아이템 번호를 입력하세요 (0 입력 시 마을로 돌아갑니다): ");
+                Console.WriteLine("사용할 아이템 번호를 입력하세요(0을 누르면 마을로 돌아갑니다) : ");
             }
             else
             {
@@ -47,34 +49,44 @@
                 Console.WriteLine();
                 Thread.Sleep(1000);
                 Console.WriteLine("마을로 돌아가려면 아무키나 누르세요");
+                Console.ReadKey();
+                game.ChangeScene(SceneType.Town);
             }
         }
 
         public override void Update()
         {
-            // TODO : 인벤토리 처리
-            if (game.Player.Inventory.Count > 0)
+            if (game.Player.Inventory.Count > 0) 
             {
-                switch (input)
+                if (int.TryParse(input, out int num) && num >= 0 && num <= game.Player.Inventory.Count)
                 {
-                    case "0":
+                    if (num == 0)
+                    {
                         game.ChangeScene(SceneType.Town);
-                        break;
-                    case "1":
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        break;
-                    case "4":
-                        break;
-                    default:
-                        return;
-
-
+                    }
+                    else
+                    {
+                        Item item = game.Player.Inventory[num - 1];
+                        item.Use(game.Player);
+                        game.Player.Inventory.RemoveAt(num - 1); 
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.");
+                    Thread.Sleep(1000);
                 }
             }
-            game.ChangeScene(SceneType.Town);
+            else
+            {
+                Console.WriteLine("소지하고 있는 아이템이 없습니다.");
+                Console.WriteLine();
+                Thread.Sleep(1000);
+                Console.WriteLine("마을로 돌아가려면 아무키나 누르세요");
+                Console.ReadKey();
+                game.ChangeScene(SceneType.Town);
+            }
+           
         }
     }
 }

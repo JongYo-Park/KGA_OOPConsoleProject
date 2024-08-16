@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MiniGameTextRPG.Items;
 
 namespace MiniGameTextRPG.Scenes
 {
@@ -48,7 +49,7 @@ namespace MiniGameTextRPG.Scenes
             Console.WriteLine("1. 체력 회복 포션 (50G)");
             Console.WriteLine("2. 공격력 증가 포션 (50G)");
             Console.WriteLine("3. 방어력 증가 포션 (50G)");
-            Console.WriteLine("4. 레벨업 포션 (100G)");
+            //Console.WriteLine("4. 레벨업 포션 (100G)"); // 구현예정
             Console.WriteLine("5. 마을로 돌아간다.");
             Console.Write("선택 : ");
         }
@@ -104,21 +105,21 @@ namespace MiniGameTextRPG.Scenes
                             Console.WriteLine("잔액이 부족합니다....");
                         }
                         break;
-                    case "4":
-                        //인벤토리에 레벨업 포션 추가
-                        if (game.Player.Gold >= 100)
-                        {
-                            game.Player.Gold -= 100;
-                            Console.Clear();
-                            Console.WriteLine("레벨업 포션을 구입하였습니다!");
-                            game.Player.AddItem(lvUpPotion);
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine("잔액이 부족합니다....");
-                        }
-                        break;
+                    //case "4":
+                    //    //인벤토리에 레벨업 포션 추가
+                    //    if (game.Player.Gold >= 100)
+                    //    {
+                    //        game.Player.Gold -= 100;
+                    //        Console.Clear();
+                    //        Console.WriteLine("레벨업 포션을 구입하였습니다!");
+                    //        game.Player.AddItem(lvUpPotion);
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.Clear();
+                    //        Console.WriteLine("잔액이 부족합니다....");
+                    //    }
+                    //    break;
                     case "5":
                         game.ChangeScene(SceneType.Town);
                         break;
@@ -128,9 +129,24 @@ namespace MiniGameTextRPG.Scenes
             }
             else
             {
-                Console.WriteLine("인벤토리가 가득 차서 더 이상 아이템을 구매할 수 없습니다.");
                 switch (input)
                 {
+                    case "1":
+                    Console.WriteLine("인벤토리가 가득 차서 더 이상 아이템을 구매할 수 없습니다.");
+                        Thread.Sleep(1000);
+                        break;
+                    case "2":
+                        Console.WriteLine("인벤토리가 가득 차서 더 이상 아이템을 구매할 수 없습니다.");
+                        Thread.Sleep(1000);
+                        break;  
+                    case "3":
+                        Console.WriteLine("인벤토리가 가득 차서 더 이상 아이템을 구매할 수 없습니다.");
+                        Thread.Sleep(1000);
+                        break;
+                    //case "4":
+                    //    Console.WriteLine("인벤토리가 가득 차서 더 이상 아이템을 구매할 수 없습니다.");
+                    //    Thread.Sleep(1000);
+                    //    break;
                     case "5":
                         game.ChangeScene(SceneType.Town);
                         break;
