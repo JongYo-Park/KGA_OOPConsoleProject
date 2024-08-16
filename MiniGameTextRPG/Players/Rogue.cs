@@ -24,7 +24,6 @@ namespace MiniGameTextRPG.Players
         public override void Skill(Monster monster)
         {
             // TODO : 스킬 구현 (공격 x2)
-            Console.WriteLine("도적 스킬 사용!");
             //RogueSkill = attack * 2;
             
         }

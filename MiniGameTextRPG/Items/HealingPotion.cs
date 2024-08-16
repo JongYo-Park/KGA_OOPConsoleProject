@@ -9,10 +9,9 @@ namespace MiniGameTextRPG.Items
 {
     public class HealingPotion : Item
     {
-        //플레이어 curHP += 50
         public HealingPotion() : base("체력 회복 포션")
         {
-
+        
         }
 
         public override void Use(Player player)

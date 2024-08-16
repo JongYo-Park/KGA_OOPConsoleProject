@@ -7,7 +7,7 @@ using MiniGameTextRPG.Players;
 
 namespace MiniGameTextRPG.Items
 {
-    public class LvUpPotion : Item
+    public class LvUpPotion : Item //추후 레벨업 기능 구현
     {
         public LvUpPotion() : base("레벨 업 포션")
         {
